@@ -5,7 +5,7 @@ var points = [];
 var spaceSize;
 var space = new CanvasSpace("pt").setup( {bgcolor: "#000000"} );
 
-var helpToggle = true;
+var helpToggle = false;
 
 var arcToggle1 = true;
 var arcToggle2 = false;

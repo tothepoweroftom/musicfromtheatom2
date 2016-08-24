@@ -36,9 +36,9 @@ var sliderDiv;
 var sliderDiv2;
 var sliderDiv3;
 
-var sliderRad = 220;
-var sliderRad2  = 280;
-var sliderRad3 = 340;
+var sliderRad = 210;
+var sliderRad2  = 270;
+var sliderRad3 = 330;
 var margin = 30;
 var orbitWidth = 25;
 
