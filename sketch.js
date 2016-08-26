@@ -352,7 +352,7 @@ function preload() {
     }).connect(pingPong);
 
     //TURN DOWN THE VOLUME
-    sampler.volume.value = -4;
+    sampler.volume.value = -10;
     sampler2.volume.value = -16;
     sampler3.volume.value = -10;
 
