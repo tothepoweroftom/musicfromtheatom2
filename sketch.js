@@ -36,9 +36,9 @@ var sliderDiv;
 var sliderDiv2;
 var sliderDiv3;
 
-var sliderRad = 205;
-var sliderRad2  = 255;
-var sliderRad3 = 305;
+var sliderRad = 230;
+var sliderRad2  = 290;
+var sliderRad3 = 350;
 var margin = 30;
 var orbitWidth = 10;
 
@@ -599,5 +599,6 @@ function onValueChange3(e){
 
 }
 function changeColor(id){
-var targetDiv = document.getElementById(id).getElementsByClassName("rs-path-color")[0];
+var targetDiv = document.getElementById(id).getElementsByClassName("slider rs-range-color");
+targetDiv.style.backgroundColor = 'white';
 }
