@@ -36,11 +36,11 @@ var sliderDiv;
 var sliderDiv2;
 var sliderDiv3;
 
-var sliderRad = 210;
-var sliderRad2  = 270;
-var sliderRad3 = 330;
+var sliderRad = 205;
+var sliderRad2  = 255;
+var sliderRad3 = 305;
 var margin = 30;
-var orbitWidth = 25;
+var orbitWidth = 10;
 
 
 
@@ -67,12 +67,12 @@ function Rectangle(_x, _y, _width, _height, _sample) {
     // this.note = _note;
     this.counter = 10;
     this.display = function() {
-        noFill();
-        if (this.ring3) {
+      //  noFill();
+        if (this.ring1) {
             fill(255, 0, 0);
             rect(this.x, this.y, this.width, this.height);
         } else {
-            fill(255);
+            fill(0);
             rect(this.x, this.y, this.width, this.height);
         }
 
@@ -149,7 +149,7 @@ $("#slider").roundSlider("disable");
 
 
 //TONE.JS EFFECTS
-var pingPong = new Tone.PingPongDelay("2n", 0.1).toMaster();
+var pingPong = new Tone.PingPongDelay("2n", 0.3).toMaster();
 pingPong.wet.value = 0.2;
 
 
@@ -171,29 +171,18 @@ function preload() {
 
 
         },
+
         B: {
-            1: "./audio/violin/violin1.wav",
-            2: "./audio/violin/violin2.wav",
-            3: "./audio/violin/violin3.wav",
-            4: "./audio/violin/violin4.wav",
-            5: "./audio/violin/violin5.wav",
-            6: "./audio/violin/violin6.wav",
+            1: "./audio/cello/cello1.wav",
+            2: "./audio/cello/cello2.wav",
+            3: "./audio/cello/cello3.wav",
+            4: "./audio/cello/cello4.wav",
+            5: "./audio/cello/cello5.wav",
+            6: "./audio/cello/cello6.wav",
 
 
 
         },
-
-        // B: {
-        //     1: "./audio/cello/cello1.wav",
-        //     2: "./audio/cello/cello2.wav",
-        //     3: "./audio/cello/cello3.wav",
-        //     4: "./audio/cello/cello4.wav",
-        //     5: "./audio/cello/cello5.wav",
-        //     6: "./audio/cello/cello6.wav",
-        //
-        //
-        //
-        // },
         C: {
             1: "./audio/hang/hang1.wav",
             2: "./audio/hang/hang2.wav",
@@ -353,15 +342,15 @@ function preload() {
 
     //TURN DOWN THE VOLUME
     sampler.volume.value = -10;
-    sampler2.volume.value = -16;
+    sampler2.volume.value = -18;
     sampler3.volume.value = -10;
 
     sampler.envelope.attack = 0.8;
     sampler2.envelope.attack = 0.8;
     sampler3.envelope.attack = 0.8;
-    // sampler.envelope.release = 0.2;
-    // sampler2.envelope.release = 0.1;
-    // sampler3.envelope.release = 0.1;
+    sampler.envelope.release = 0.5;
+    sampler2.envelope.release = 0.5;
+    sampler3.envelope.release = 0.5;
 }
 
 // function init() {
@@ -372,7 +361,7 @@ function preload() {
 
 function setup() {
     canvas = createCanvas(480, 320);
-    canvas.position(windowWidth / 2 - canvas.width / 2, 0);
+    canvas.position(windowWidth / 2 - canvas.width / 2, windowHeight/2-canvas.width/2);
 
     var toggle = document.getElementById('nexusControls');
     toggle.style.display = 'block';
@@ -387,7 +376,7 @@ function setup() {
     slider = $('#slider').roundSlider({
       radius: sliderRad,
       width: orbitWidth,
-      handleSize: "+25",
+      handleSize: "+20",
       sliderType: "range",
       max: "360",
       value: "0,180",
@@ -404,11 +393,11 @@ sliderDiv2.position(windowWidth / 2 - sliderRad2, windowHeight / 2 - sliderRad2)
 slider2 = $('#slider2').roundSlider({
   radius: sliderRad2,
   width: orbitWidth,
-  handleSize: "+25",
+  handleSize: "+20",
   sliderType: "range",
   max: "362",
   //startAngle: "90",
-  value: "90, 360",
+  value: "180, 270",
   showTooltip: "false",
   change: "onValueChange2"
 });
@@ -424,10 +413,10 @@ sliderDiv3.position(windowWidth / 2 - sliderRad3, windowHeight / 2 - sliderRad3)
 slider3 = $('#slider3').roundSlider({
   radius: sliderRad3,
   width: orbitWidth,
-  handleSize: "+25",
+  handleSize: "+20",
   sliderType: "range",
-  max: "362",
-  value: "0,270",
+  max: "360",
+  value: "270,360",
   showTooltip: "false",
   change: "onValueChange3"
 });
@@ -444,7 +433,7 @@ $("#slider3").roundSlider("disable");
     vidDisplay.id("vidDisplay");
     video.loop();
     vidDisplay.loop();
-    //vidDisplay.hide();
+  //  vidDisplay.hide();
     video.size(480 / vscale, 320 / vscale);
     vidDisplay.size(640, 400);
     vidDisplay.position(windowWidth / 2 - vidDisplay.width / 2, windowHeight / 2 - vidDisplay.height / 2);
@@ -461,7 +450,7 @@ $("#slider3").roundSlider("disable");
         for (var x = 0; x < video.width; x++) {
             var index = (x + (y * video.width));
             //console.log(index);
-            rects[index] = new Rectangle(x * vscale, y * vscale, vscale, vscale, notes[index % 23]);
+            rects[index] = new Rectangle(x * vscale, y * vscale, vscale, vscale, notes[index % 24]);
             //rects[index].display();
             //print("Theta = " + rects[index].theta);
         }
@@ -492,10 +481,12 @@ function draw() {
             var bright = (r + g + b) / 3;
 
 
+              //  rects[index/4].display();
 
             if (bright > 200 && rects[index / 4].ring1 === true && arcToggle1) {
 
                 sampler.triggerAttack(rects[index / 4].sample);
+              //  slider.animate({ backgroundColor: '#FF69B4' }, 1000);
 
 
 
