@@ -37,8 +37,8 @@ var sliderDiv2;
 var sliderDiv3;
 
 var sliderRad = 230;
-var sliderRad2  = 290;
-var sliderRad3 = 350;
+var sliderRad2  = 300;
+var sliderRad3 = 370;
 var margin = 30;
 var orbitWidth = 10;
 
@@ -150,7 +150,7 @@ $("#slider").roundSlider("disable");
 
 //TONE.JS EFFECTS
 var pingPong = new Tone.PingPongDelay("2n", 0.3).toMaster();
-pingPong.wet.value = 0.2;
+pingPong.wet.value = 0.1;
 
 
 
