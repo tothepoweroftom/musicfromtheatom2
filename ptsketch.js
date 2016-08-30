@@ -30,7 +30,6 @@ var arcColors = {
   c1: '#17BEBB', c2: '#B0DB43', c3: '#D62246',
   d1: '#303040', d2: '#304030', d3: '#403030'
 };
-//var space = new CanvasSpace("pt").setup( {bgcolor: colors.a4} );
 var form = new Form( space );
 
 spaceSize = space.size.$divide(2);
@@ -102,4 +101,4 @@ spaceSize = space.size.$divide(2);
 //
 // // // 4. Start playing
 // space.bindMouse();
-// space.play();
+ space.play();

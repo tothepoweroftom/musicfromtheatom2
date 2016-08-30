@@ -491,6 +491,7 @@ function draw() {
 
 
 
+
             }
             if (bright > 200 && rects[index / 4].ring2 === true && arcToggle2) {
 
@@ -538,6 +539,8 @@ function onValueChange1(e){
   var array = e.value.split(',');
   var max = parseInt(array[1]);
   var min = parseInt(array[0]);
+  points[0] = min;
+  points[1] = max;
 
 //  console.log("max = " + max + " min = " + min);
 
@@ -560,6 +563,8 @@ function onValueChange2(e){
   var array = e.value.split(',');
   var max = parseInt(array[1]);
   var min = parseInt(array[0]);
+  points[2] = min;
+  points[3] = max;
 
 //  console.log("max = " + max + " min = " + min);
 
@@ -582,6 +587,8 @@ function onValueChange3(e){
   var array = e.value.split(',');
   var max = parseInt(array[1]);
   var min = parseInt(array[0]);
+  points[4] = min;
+  points[5] = max;
 
 //  console.log("max = " + max + " min = " + min);
 
